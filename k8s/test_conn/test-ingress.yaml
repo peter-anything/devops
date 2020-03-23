@@ -1,0 +1,12 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+spec:
+  rules:
+  - host: my.gsir.com.cn
+    http:
+      paths:
+      - backend:
+          serviceName: my-nginx
+          servicePort: 80

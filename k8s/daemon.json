@@ -1,0 +1,11 @@
+{
+    "storage-driver": "overlay2",
+    "registry-mirrors": ["https://docker.gsir.com.cn"], 
+    "insecure-registries": ["https://docker.gsir.com.cn", "https://dockerhub.gsir.com.cn"],
+    "log-driver": "json-file",
+        "log-opts": {
+        "max-size": "100m"
+    },
+    "storage-driver": "overlay2",
+    "exec-opts": ["native.cgroupdriver=systemd"]
+}

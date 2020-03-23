@@ -1,0 +1,17 @@
+# my global config
+global:
+  # 设置抓取数据的时间间隔，间隔设置为每15秒一次。默认为每1分钟。
+  scrape_interval:     15s
+  # 设定抓取数据的超时时间，默认为10s
+  scrape_timeout: 15s
+  # 设置规则刷新，每15秒刷新一次规则。默认值为每1分钟。
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['192.168.0.111:9090']
+  # 采集node exporter监控数据
+  - job_name: 'node'
+    static_configs:
+      - targets: ['192.168.0.111:9100', '192.168.0.112:9100', '192.168.0.113:9100', '192.168.0.114:9100']
