@@ -1,0 +1,25 @@
+{
+    "CN": "My own CA",
+    "hosts": [
+      "127.0.0.1",
+      "192.168.0.121",
+      "192.168.0.122",
+      "192.168.0.123",
+      "node1",
+      "node2",
+      "node3"
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C": "CN",
+            "ST": "BeiJing",
+            "L": "BeiJing",
+            "O": "frognew",
+            "OU": "cloudnative"
+        }
+    ]
+}

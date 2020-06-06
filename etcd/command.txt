@@ -1,0 +1,77 @@
+docker run --rm --name etcd \
+--net=host \
+-p 2579:2579 \
+-p 2580:2580 \
+-v /data/docker/etcd/data:/var/lib/etcd \
+-v /share/etc/etcd/ssl:/etc/kubernetes/pki/etcd \
+k8s.gcr.io/etcd:3.4.3-0 \
+/usr/local/bin/etcd \
+--advertise-client-urls=https://192.168.0.121:2579 \
+--cert-file=/etc/kubernetes/pki/etcd/etcd.pem \
+--key-file=/etc/kubernetes/pki/etcd/etcd-key.pem \
+--client-cert-auth=true \
+--data-dir=/var/lib/etcd \
+--initial-advertise-peer-urls=https://192.168.0.121:2580 \
+--initial-cluster=node1=https://192.168.0.121:2580,node2=https://192.168.0.122:2580,node3=https://192.168.0.123:2580 \
+--listen-client-urls=https://0.0.0.0:2579 \
+--listen-metrics-urls=http://127.0.0.1:2381 \
+--listen-peer-urls=https://0.0.0.0:2580 \
+--name=node1 \
+--peer-cert-file=/etc/kubernetes/pki/etcd/etcd.pem \
+--peer-client-cert-auth=true \
+--peer-key-file=/etc/kubernetes/pki/etcd/etcd-key.pem \
+--peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.pem \
+--snapshot-count=10000 \
+--trusted-ca-file=/etc/kubernetes/pki/etcd/ca.pem
+
+
+docker run --rm --name etcd \
+    --net=host \
+    -p 2579:2579 \
+    -p 2580:2580 \
+    -v /data/docker/etcd/data:/var/lib/etcd \
+    -v /share/etc/etcd/ssl:/etc/kubernetes/pki/etcd \
+    k8s.gcr.io/etcd:3.4.3-0 \
+    /usr/local/bin/etcd \
+    --advertise-client-urls=https://192.168.0.122:2579 \
+    --cert-file=/etc/kubernetes/pki/etcd/etcd.pem \
+    --key-file=/etc/kubernetes/pki/etcd/etcd-key.pem \
+    --client-cert-auth=true \
+    --data-dir=/var/lib/etcd \
+    --initial-advertise-peer-urls=https://192.168.0.122:2580 \
+    --initial-cluster=node1=https://192.168.0.121:2580,node2=https://192.168.0.122:2580,node3=https://192.168.0.123:2580 \
+    --listen-client-urls=https://0.0.0.0:2579 \
+    --listen-peer-urls=https://0.0.0.0:2580 \
+    --name=node2 \
+    --peer-cert-file=/etc/kubernetes/pki/etcd/etcd.pem \
+    --peer-client-cert-auth=true \
+    --peer-key-file=/etc/kubernetes/pki/etcd/etcd-key.pem \
+    --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.pem \
+    --snapshot-count=10000 \
+    --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.pem
+
+docker run --rm --name etcd \
+    --net=host \
+    -p 2579:2579 \
+    -p 2580:2580 \
+    -v /data/docker/etcd/data:/var/lib/etcd \
+    -v /share/etc/etcd/ssl:/etc/kubernetes/pki/etcd \
+    k8s.gcr.io/etcd:3.4.3-0 \
+    /usr/local/bin/etcd \
+    --advertise-client-urls=https://192.168.0.123:2579 \
+    --cert-file=/etc/kubernetes/pki/etcd/etcd.pem \
+    --key-file=/etc/kubernetes/pki/etcd/etcd-key.pem \
+    --client-cert-auth=true \
+    --data-dir=/var/lib/etcd \
+    --initial-advertise-peer-urls=https://192.168.0.123:2580 \
+    --initial-cluster=node1=https://192.168.0.121:2580,node2=https://192.168.0.122:2580,node3=https://192.168.0.123:2580 \
+    --listen-client-urls=https://0.0.0.0:2579 \
+    --listen-peer-urls=https://0.0.0.0:2580 \
+    --name=node3 \
+    --peer-cert-file=/etc/kubernetes/pki/etcd/etcd.pem \
+    --peer-client-cert-auth=true \
+    --peer-key-file=/etc/kubernetes/pki/etcd/etcd-key.pem \
+    --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.pem \
+    --snapshot-count=10000 \
+    --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.pem \
+    -initial-cluster-state=new
